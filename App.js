@@ -6,56 +6,68 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      larBox: new Animated.Value(150),
+      larBox: new Animated.Value(170),
       altBox: new Animated.Value(50),
-      opacidade: new Animated.Value(0),
+      opacidade: new Animated.Value(1),
     };
 
-    Animated.sequence([
-      Animated.timing(
-        this.state.opacidade,
-        {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: false
-        }
-      ),
-      Animated.parallel([
+    Animated.loop(
+      Animated.sequence([
         Animated.timing(
           this.state.larBox,
           {
             toValue: 300,
-            duration: 2000,
-            useNativeDriver: false
+            duration: 1000,
+            useNativeDriver:false
           }
         ),
         Animated.timing(
-          this.state.altBox,
+          this.state.larBox,
           {
-            toValue: 250,
-            duration: 2000,
+            toValue: 170,
+            duration: 1000,
             useNativeDriver: false
           }
         )
-      ]),
-      Animated.timing(
-        this.state.opacidade,
-        {
-          toValue: 0,
-          duration: 1500,
-          useNativeDriver: false
-        }
-      )
-    ]).start();
+      ])
+    ).start();
 
-    // Animated.timing(
-    //   this.state.larBox,
-    //   {
-    //     toValue: 300,
-    //     duration: 2000,
-    //     useNativeDriver: false
-    //   }
-    // ).start();
+    // Animated.sequence([
+    //   Animated.timing(
+    //     this.state.opacidade,
+    //     {
+    //       toValue: 1,
+    //       duration: 1000,
+    //       useNativeDriver: false
+    //     }
+    //   ),
+    //   Animated.parallel([
+    //     Animated.timing(
+    //       this.state.larBox,
+    //       {
+    //         toValue: 300,
+    //         duration: 2000,
+    //         useNativeDriver: false
+    //       }
+    //     ),
+    //     Animated.timing(
+    //       this.state.altBox,
+    //       {
+    //         toValue: 250,
+    //         duration: 2000,
+    //         useNativeDriver: false
+    //       }
+    //     )
+    //   ]),
+    //   Animated.timing(
+    //     this.state.opacidade,
+    //     {
+    //       toValue: 0,
+    //       duration: 1500,
+    //       useNativeDriver: false
+    //     }
+    //   )
+    // ]).start();
 
   }
 
@@ -72,7 +84,8 @@ class App extends Component {
           opacity: this.state.opacidade,
           backgroundColor: "#0099ff",
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          borderRadius:40
         }}>
           <Text style={{
             fontSize: 20,
